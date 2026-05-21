@@ -38,4 +38,13 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDTO>getAllEmployee(@PathVariable String Id)throws EmployeeException {
         return new ResponseEntity<>(employeeservice.getEmployeeById(Id),HttpStatus.OK);
     }
+     @PutMapping("/{Id}/{address}")
+    public ResponseEntity<Employee>updateEmployee(@PathVariable String Id, @PathVariable String address)throws EmployeeException {
+        return new ResponseEntity<>(employeeservice.updateEmployee(Id,address),HttpStatus.OK);
+    }
+    @DeleteMapping("/{Id}")
+    public ResponseEntity<String>deleteEmployee(@PathVariable String Id)throws EmployeeException {
+        String message = environment.getProperty("API.Deleted_successfully");
+        return new ResponseEntity<>(message,HttpStatus.OK);
+    }
 }
